@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Literatura Brasileira — Feed</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<!--
+╔══════════════════════════════════════════════════════════════╗
+║           LITERATURA BRASILEIRA — FEED INTERATIVO           ║
+║                 Projeto 3° Ano EMTI · 2025                  ║
+╠══════════════════════════════════════════════════════════════╣
+║  ONDE VOCÊS DEVEM MEXER:                                    ║
+║  ✅ Seção "DADOS DO PERFIL" (perfil do escritor)            ║
+║  ✅ Seção "DESTAQUES" (conteúdo dos modais)                 ║
+║  ✅ Seção "STORIES" (imagens e vídeos)                      ║
+║  ✅ Seção "POSTS DO FEED" (imagens e legendas)              ║
+║  ✅ Hashtags nas .post-tags                                 ║
+║  ✅ Comentários nos posts                                   ║
+║                                                             ║
+║  ONDE NÃO MEXER (a não ser que saibam o que estão fazendo): ║
+║  ❌ Variáveis CSS no :root e nos [data-theme]               ║
+║  ❌ Funções JavaScript (openStory, openHighlight, etc.)     ║
+║  ❌ Estrutura dos modais (.modal-overlay, .modal-box)       ║
+║  ❌ Sistema de temas (.theme-bar, setTheme)                 ║
+║  ❌ Responsividade (@media queries)                         ║
+╚══════════════════════════════════════════════════════════════╝
+-->
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     BARRA DE TEMAS — NÃO EDITAR
+     ══════════════════════════════════════════════════════════ -->
+<div class="theme-bar">
+  <span class="theme-bar-title">📚 Aluísio Tancredo Gonçalves de Azevedo | Feed Literário</span>
+  <div class="theme-btns">
+    <button class="theme-btn active" onclick="setTheme('claro', this)">☀️ Claro</button>
+    <button class="theme-btn" onclick="setTheme('noite', this)">🌙 Noite</button>
+    <button class="theme-btn" onclick="setTheme('verde', this)">🌿 Verde</button>
+    <button class="theme-btn" onclick="setTheme('azul', this)">🌊 Azul</button>
+  </div>
+</div>
+
+<div class="insta-wrapper">
+
+  <!-- ══════════════════════════════════════════════════════════
+       ✅ DADOS DO PERFIL — EDITE AQUI
+       Preencha com as informações do escritor escolhido
+       ══════════════════════════════════════════════════════════ -->
+  <div class="profile-header">
+    <div class="profile-top">
+      <div class="profile-avatar">
+        <div class="profile-avatar-inner" id="profile-avatar-content">
+          <!--
+            ✅ FOTO DO ESCRITOR:
+            Substitua o emoji abaixo por:
+            <img src="URL_DA_FOTO" alt="Nome do Escritor">
+            
+            Dica: busque a foto no Wikimedia Commons (gratuito e sem direitos autorais)
+            Exemplo: <img src="https://upload.wikimedia.org/..." alt="Machado de Assis">
+          -->
+          <img src="aluisio.webp" alt="Foto de perfil do autor">
+        </div>
+      </div>
+
+      <div class="profile-stats">
+        <div class="stat">
+          <!--
+            ✅ Atualize este número conforme a quantidade de posts que vocês criarem
+          -->
+          <span class="stat-num" id="stat-posts">3</span>
+          <span class="stat-label">publicações</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">999m</span><!-- Deixe como curiosidade ou coloque um número fictício divertido -->
+          <span class="stat-label">seguidores</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">1</span>
+          <span class="stat-label">seguindo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-info">
+      <!--
+        ✅ NOME COMPLETO DO ESCRITOR
+        Exemplo: Machado de Assis
+      -->
+      <div class="profile-name" id="profile-name">Aluísio Tancredo Gonçalves de Azevedo </div>
+
+      <!--
+        ✅ PERÍODO LITERÁRIO E DATAS
+        Exemplo: Realismo · 1839 – 1908
+      -->
+      <div class="profile-period" id="profile-period">Naturalismo · 1857– 1913</div>
+
+      <!--
+        ✅ MINI BIOGRAFIA
+        Escreva 2-3 linhas sobre o escritor: geração, estilo, principais contribuições.
+        Use emojis para deixar mais dinâmico!
+      -->
+      <div class="profile-bio" id="profile-bio">
+        ✍️ Aluísio Azevedo foi um escritor, jornalista e diplomata brasileiro, nascido em 1857 no Maranhão e falecido em 1913 na Argentina: geração, estilo, principais contribuições.<br>
+        📍 São Luís-MA
+      </div>
+
+      <!--
+        ✅ LINK DA OBRA PRINCIPAL
+        Pode ser um link para a obra no Domínio Público (domíniopublico.gov.br)
+        ou para a página do escritor na Academia Brasileira de Letras
+        Exemplo: <a href="https://..." class="profile-link" id="profile-link">📖 Dom Casmurro (1899)</a>
+      -->
+      <a href="https://brasilescola.uol.com.br/literatura/o-cortico-de-aluisio-azevedo.htm" class="profile-link" id="profile-link">🔗 Obra principal ou obra mais conhecida</a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       ✅ STORIES — EDITE AQUI
+       Cada story-item abre um modal com a mídia em tela cheia.
+       Você pode usar imagens estáticas ou vídeos curtos.
+       ══════════════════════════════════════════════════════════ -->
+  <div class="stories-section">
+    <div class="stories-section-label">Stories</div>
+    <div class="stories-bar">
+      <div class="stories-inner" id="stories-container">
+
+        <!--
+          ══════════════════════════════════════════════
+          COMO ADICIONAR UM STORY:
+
+          <div class="story-item" onclick="openStory(this)"
+               data-media="URL_DA_IMAGEM_OU_VIDEO"
+               data-type="image"     (ou "video")
+               data-caption="Legenda que aparece embaixo da mídia"
+               data-label="Rótulo abaixo do círculo">
+            <div class="story-ring">
+              <div class="story-inner">
+                COLOQUE UMA MINIATURA AQUI:
+                <img src="URL_MINIATURA" alt="...">
+                OU um emoji representativo
+              </div>
+            </div>
+            <span class="story-label">Rótulo</span>
+          </div>
+
+          DICAS:
+          - data-type="image"  → para fotos (jpg, png, webp)
+          - data-type="video"  → para vídeos curtos (mp4)
+          - O story some automaticamente após 5 segundos
+          - Toque/clique na metade direita para avançar
+          - Toque/clique na metade esquerda para voltar
+          ══════════════════════════════════════════════
+        -->
+
+        <!-- STORY 1 -->
+        <div class="story-item" onclick="openStory(this)"
+             data-media="story(1).png"
+             data-type="image"
+             data-caption="A vida no cortiço era uma verdadeira babel, uma mistura de raças, de línguas, de costumes."
+             data-label="Story 1">
+          <div class="story-ring">
+            <div class="story-inner">
+              <!--
+                ✅ MINIATURA DO STORY 1
+                Substitua o emoji por: <img src="URL_DA_IMAGEM" alt="...">
+                E preencha data-media="" com a URL da imagem ou vídeo completo
+              -->
+              <img src="story(1).png" alt="">
+            </div>
+          </div>
+          <span class="story-label">Story 1</span>
+        </div>
+
+        <!-- STORY 2 -->
+        <div class="story-item" onclick="openStory(this)"
+             data-media="story(2).png"
+             data-type="image"
+             data-caption="A luta por um lugar ao sol, a busca por dignidade, é o que move cada personagem, refletindo as aspirações de uma sociedade em transformação."
+             data-label="Story 2">
+          <div class="story-ring">
+            <div class="story-inner"><img src="story(2).png" alt=""></div>
+          </div>
+          <span class="story-label">Story 2</span>
+        </div>
+
+        <!-- STORY 3 -->
+        <div class="story-item" onclick="openStory(this)"
+             data-media="story(3).png"
+             data-type="image"
+             data-caption="Infeliz daquele a quem não é dado chorar; só o pranto afoga a dor que a vontade não vence destruir"
+             data-label="Story 3">
+          <div class="story-ring">
+            <div class="story-inner"><img src="story(3).png" alt=""></div>
+          </div>
+          <span class="story-label">Story 3</span>
+        </div>
+
+        <!--
+          ✅ Para adicionar mais stories, copie um bloco acima e cole aqui
+        -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       ✅ DESTAQUES — EDITE AQUI
+       Cada destaque abre um modal com conteúdo rico.
+       Clique em cada um para ver o exemplo de estrutura.
+       ══════════════════════════════════════════════════════════ -->
+  <div class="highlights-section">
+    <div class="highlights-label">Destaques</div>
+    <div class="highlights-bar">
+
+      <!-- DESTAQUE: OBRAS -->
+      <div class="highlight-item" onclick="openHighlight('obras')">
+        <div class="highlight-ring">
+          <!--
+            ✅ CAPA DO DESTAQUE "OBRAS"
+            Substitua o emoji por: <img src="URL_DA_IMAGEM" alt="Obras">
+          -->
+          🖊️
+        </div>
+        <span class="highlight-label">Obras</span>
+      </div>
+
+      <!-- DESTAQUE: VIDA -->
+      <div class="highlight-item" onclick="openHighlight('vida')">
+        <div class="highlight-ring">🏛️</div>
+        <span class="highlight-label">Vida</span>
+      </div>
+
+      <!-- DESTAQUE: FRASES -->
+      <div class="highlight-item" onclick="openHighlight('frases')">
+        <div class="highlight-ring">💬</div>
+        <span class="highlight-label">Frases</span>
+      </div>
+
+      <!-- DESTAQUE: CONTEXTO HISTÓRICO -->
+      <div class="highlight-item" onclick="openHighlight('contexto')">
+        <div class="highlight-ring">📜</div>
+        <span class="highlight-label">Contexto</span>
+      </div>
+
+      <!-- DESTAQUE: PRÊMIOS E LEGADO -->
+      <div class="highlight-item" onclick="openHighlight('legado')">
+        <div class="highlight-ring">🏆</div>
+        <span class="highlight-label">Legado</span>
+      </div>
+
+      <!--
+        ✅ Para adicionar mais destaques, copie um bloco acima e:
+        1. Mude o onclick para openHighlight('minha-secao')
+        2. Adicione o conteúdo do modal na seção de MODAIS DE DESTAQUE abaixo
+      -->
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       ✅ FEED DE POSTS — EDITE AQUI
+       ══════════════════════════════════════════════════════════ -->
+  <div class="posts-feed">
+
+    <!-- ══════════════════════════════════════════════════════════
+         POST 1
+         ══════════════════════════════════════════════════════════ -->
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar">
+          <div class="post-avatar-inner">
+            <!--
+              ✅ FOTO DO ESCRITOR NO POST (pequena)
+              Substitua por: <img src="URL_DA_FOTO" alt="Nome">
+              Ou use a inicial do nome: M (para Machado, por ex.)
+            -->
+            <img src="aluisio.webp" alt="Foto de Perfil">
+          </div>
+        </div>
+        <div class="post-user-info">
+          <div class="post-username">
+            <!--
+              ✅ USERNAME e PERÍODO LITERÁRIO
+              Exemplo: @machadodeassis
+            -->
+            @Aluísio_Azevedo
+            <span class="periodo-badge">Naturalismo</span><!-- ex: Realismo, Romantismo, Modernismo... -->
+          </div>
+          <!--
+            ✅ LOCALIZAÇÃO E ANOS
+            Exemplo: Rio de Janeiro, RJ · 1839–1908
+          -->
+          <div class="post-location">Belo Horizonte, MG · Há 5 dias atras </div>
+        </div>
+        <div class="post-menu">···</div>
+      </div>
+
+      <!--
+        ✅ IMAGEM DO POST 1
+        Substitua todo este bloco por:
+        <img src="URL_DA_IMAGEM" alt="Descrição" class="post-image">
+
+        Sugestões de imagem para o 1° post:
+        - Retrato do escritor
+        - Capa da obra principal
+        - Ilustração do período literário
+      -->
+      <div class="post-image-placeholder">
+        <img src="post(1).png" alt="Imagem do post 1">
+      </div>
+      <div class="post-actions">
+        <button class="post-action-btn" onclick="toggleLike(this)" title="Curtir">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="post-action-btn" title="Comentar" onclick="this.closest('.post-card').querySelector('.post-comments-preview').scrollIntoView({behavior:'smooth'})">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <button class="post-action-btn" title="Compartilhar" onclick="sharePost(this)">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <button class="post-action-btn post-save-btn" title="Salvar" onclick="toggleSave(this)">
+          <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </button>
+      </div>
+
+      <div class="post-likes">🤍 Seja o primeiro a curtir</div>
+
+      <div class="post-caption">
+        <strong>@Aluísio_Azevedo</strong>
+        <!--
+          ✅ LEGENDA DO POST 1
+          Sugestões:
+          - Uma citação famosa do autor
+          - Apresentação da obra principal
+          - Fato curioso sobre a vida do escritor
+          - Reflexão sobre o período literário
+          Use emojis! 📚✍️🌟
+        -->
+        Aluísio Azevedo foi um escritor, jornalista e diplomata brasileiro nascido em 1857, no Maranhão, sendo considerado o principal representante do Naturalismo no Brasil. Suas obras retratavam os problemas sociais do século XIX, como preconceito, pobreza e desigualdade, mostrando a influência do meio sobre o comportamento humano. Entre seus livros mais famosos estão O Cortiço, O Mulato e Casa de Pensão, que marcaram a literatura brasileira pela crítica social e pelas características naturalistas. Em 1895, deixou a carreira literária para atuar como diplomata, falecendo em 1913, na Argentina.
+      </div>
+
+      <div class="post-tags">
+        <!--
+          ✅ EDITE AS HASHTAGS do post 1
+          Exemplo: #Realismo #MachadoDeAssis #DomCasmurro
+        -->
+        <span class="tag">#LiteraturaBrasileira</span>
+        <span class="tag">#Naturalismo</span>
+        <span class="tag">#AluísioAzevedo</span>
+        <span class="tag">#principalAutordoNaturalismonoBrasil</span>
+      </div>
+
+      <div class="post-comments-preview">Ver todos os comentários</div>
+
+      <div class="post-comment">
+        <!--
+          ✅ EDITE OS COMENTÁRIOS
+          Podem ser comentários de colegas, do professor, ou personagens fictícios da época!
+        -->
+        <strong>@prof_literatura</strong>
+        Ótimo post! Que obra incrível! 📚
+      </div>
+
+      <div class="post-date">Há 30 minutos</div><!-- ✅ Ajuste a data -->
+    </div>
+    <!-- fim post 1 -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         POST 2
+         ══════════════════════════════════════════════════════════ -->
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar">
+          <div class="post-avatar-inner"><img src="aluisio.webp" alt="Imagem de Perfil"><!-- ✅ Inicial ou <img src="..."> --></div>
+        </div>
+        <div class="post-user-info">
+          <div class="post-username">
+            @Aluísio_Azevedo<!-- ✅ -->
+            <span class="periodo-badge">Naturalismo</span><!-- ✅ -->
+          </div>
+          <div class="post-location">Sete Lagoas, MG · Há 3 dias</div><!-- ✅ -->
+        </div>
+        <div class="post-menu">···</div>
+      </div>
+
+      <!--
+        ✅ IMAGEM DO POST 2
+        Sugestão: capa de uma obra específica, manuscrito, ou ilustração da época
+      -->
+      <div class="post-image-placeholder">
+        <img src="post(2).png" alt="Imagem do post 1">
+      </div>
+
+      <div class="post-actions">
+        <button class="post-action-btn" onclick="toggleLike(this)" title="Curtir">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="post-action-btn" title="Comentar">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <button class="post-action-btn" title="Compartilhar" onclick="sharePost(this)">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <button class="post-action-btn post-save-btn" title="Salvar" onclick="toggleSave(this)">
+          <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </button>
+      </div>
+
+      <div class="post-likes">🤍 Seja o primeiro a curtir</div>
+
+      <div class="post-caption">
+        <strong>@Aluísio_Azevedo</strong>
+        <!-- ✅ LEGENDA DO POST 2: Uma obra específica, poema, trecho famoso ou momento da vida do escritor -->
+        Um trecho inicial de O Cortiço mostra o ambiente da estalagem no começo do dia, destacando a vida coletiva e agitada dos moradores, com o cortiço “acordando” cedo e revelando o movimento intenso típico desse espaço. A obra, em geral, descreve de forma detalhada e crítica o cotidiano das classes populares, mostrando como o ambiente influencia o comportamento das pessoas.🖊️📖
+      </div>
+
+      <div class="post-tags">
+        <!-- ✅ EDITE AS HASHTAGS -->
+        <span class="tag">#LiteraturaBrasileira</span>
+        <span class="tag">#Naturalismo</span>
+        <span class="tag">#AluísioAzevedo</span>
+      </div>
+
+      <div class="post-comments-preview">Ver todos os comentários</div>
+
+      <div class="post-comment">
+        <strong>@leitor_apaixonado</strong>
+        Adorei esse autor! Muito representativo do período. 🌟
+      </div>
+
+      <div class="post-date">Há 2 horas</div>
+    </div>
+    <!-- fim post 2 -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         POST 3
+         ══════════════════════════════════════════════════════════ -->
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar">
+          <div class="post-avatar-inner"><img src="aluisio.webp" alt="Imagem de Perfil"><!-- ✅ --></div>
+        </div>
+        <div class="post-user-info">
+          <div class="post-username">
+            @Aluísio_Azevedo<!-- ✅ -->
+            <span class="periodo-badge">Naturalismo</span><!-- ✅ -->
+          </div>
+          <div class="post-location">Rio de Janeiro, RJ · Há 1 dia</div><!-- ✅ -->
+        </div>
+        <div class="post-menu">···</div>
+      </div>
+
+      <!--
+        ✅ IMAGEM DO POST 3
+        Sugestão: influências do escritor, relação com outros autores, impacto social
+      -->
+      <div class="post-image-placeholder">
+        <img src="post(3).png" alt="Imagem do post 3">
+      </div>
+
+      <div class="post-actions">
+        <button class="post-action-btn" onclick="toggleLike(this)" title="Curtir">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="post-action-btn" title="Comentar">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <button class="post-action-btn" title="Compartilhar" onclick="sharePost(this)">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <button class="post-action-btn post-save-btn" title="Salvar" onclick="toggleSave(this)">
+          <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </button>
+      </div>
+
+      <div class="post-likes">🤍 Seja o primeiro a curtir</div>
+
+      <div class="post-caption">
+        <strong>@Aluísio_Azevedo</strong>
+        <!--📚
+      </div>
+
+      <div class="post-tags">
+        <!-- ✅ EDITE AS HASHTAGS -->
+        <span class="tag">#LiteraturaBrasileira</span>
+        <span class="tag">#Naturalismo</span>
+        <span class="tag">#AluísioAzevdo</span>
+        <span class="tag">#OCortiço</span>
+      </div>
+
+      <div class="post-comments-preview">Ver todos os comentários</div>
+
+      <div class="post-comment">
+        <strong>@turma_literatura</strong>
+        Que trabalho incrível! Parabéns! 🎉
+      </div>
+
+      <div class="post-date">Há 1 semana</div>
+    </div>
+    <!-- fim post 3 -->
+
+    <!--
+    ┌─────────────────────────────────────────────────────────┐
+    │  ✅ ADICIONAR MAIS POSTS?                               │
+    │  Copie um bloco "post-card" acima e cole aqui,         │
+    │  depois edite o conteúdo. Não esqueça de atualizar     │
+    │  o número em "stat-posts" no perfil!                   │
+    └─────────────────────────────────────────────────────────┘
+    -->
+
+  </div>
+  <!-- fim posts-feed -->
+
+  <!-- RODAPÉ -->
+  <div class="feed-footer">
+    <strong>Literatura Brasileira</strong> — Feed Interativo<br>
+    <!--
+      ✅ Edite: coloque o nome da turma e da escola
+      Exemplo: Turma 3°A · Escola Estadual João XXIII · 2025
+    -->
+    Projeto criado pela turma · Escola e Ano<br>
+    <span style="opacity: 0.4; font-size: 10px;">✏️ Edite este arquivo HTML para personalizar</span>
+  </div>
+
+</div><!-- fim insta-wrapper -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     MODAIS DE DESTAQUE — ✅ EDITE O CONTEÚDO DENTRO DAS TAGS
+     Não altere a estrutura dos divs, apenas o texto interno
+     ══════════════════════════════════════════════════════════ -->
+
+<!-- MODAL: OBRAS -->
+<div class="modal-overlay" id="modal-obras" onclick="closeModalOnOverlay(event, this)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-icon">🖊️</div>
+      <div>
+        <div class="modal-title">Principais Obras</div>
+        <!--
+          ✅ Subtítulo do modal — exemplo: "A bibliografia de Machado de Assis"
+        -->
+        <div class="modal-subtitle">A bibliografia do escritor</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('obras')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!--
+        ✅ PREENCHA ESTE MODAL COM AS OBRAS DO ESCRITOR
+        Copie e cole mais blocos "modal-obra-card" conforme necessário.
+
+        ESTRUTURA DE CADA OBRA:
+        <div class="modal-obra-card">
+          <div class="modal-obra-emoji">📘</div> (escolha um emoji adequado)
+          <div class="modal-obra-info">
+            <div class="modal-obra-title">Título da Obra (Ano)</div>
+            <div class="modal-obra-desc">Breve descrição da obra: gênero, tema, importância.</div>
+          </div>
+        </div>
+      -->
+
+      <div class="modal-section">
+        <div class="modal-section-title">Naturalismo</div>
+
+        <div class="modal-obra-card">
+          <div class="modal-obra-emoji">📘</div>
+          <div class="modal-obra-info">
+            <div class="modal-obra-title">O Cortiço</div>
+            <div class="modal-obra-desc">Descrição da obra:Esse romance é um dos principais exemplos do Naturalismo no Brasil, retratando a vida em um cortiço no Rio de Janeiro e mostrando como o meio social influencia o comportamento das pessoas.</div>
+          </div>
+        </div>
+
+        <div class="modal-obra-card">
+          <div class="modal-obra-emoji">📗</div>
+          <div class="modal-obra-info">
+            <div class="modal-obra-title">Casa de Pensão</div>
+            <div class="modal-obra-desc">Casa de Pensão, de Aluísio Azevedo, é uma obra naturalista publicada em 1884 que critica a sociedade brasileira do século XIX. O romance conta a história de Amâncio, um jovem que vai ao Rio de Janeiro estudar medicina e passa a morar em uma pensão. Lá, ele se envolve com Amélia, irmã do dono da pensão, e o relacionamento acaba gerando conflitos e um desfecho trágico. A obra mostra como o ambiente social, os interesses financeiros e os costumes da época influenciam o comportamento das pessoas.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Poesia / Contos</div>
+
+        <div class="modal-obra-card">
+          <div class="modal-obra-emoji">📜</div>
+          <div class="modal-obra-info">
+            <div class="modal-obra-title">O Mulato</div>
+            <div class="modal-obra-desc">O Mulato, de Aluísio Azevedo, é um romance naturalista publicado em 1881. A obra aborda temas como preconceito racial, escravidão, hipocrisia social e influência da religião na sociedade do século XIX. A história acompanha Raimundo, um jovem mestiço que sofre discriminação por causa de sua origem racial ao retornar ao Maranhão. O livro é importante porque foi uma das primeiras obras brasileiras a denunciar o racismo e as injustiças sociais de forma crítica, além de marcar o início do Naturalismo no Brasil.</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: VIDA -->
+<div class="modal-overlay" id="modal-vida" onclick="closeModalOnOverlay(event, this)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-icon">🏛️</div>
+      <div>
+        <div class="modal-title">Biografia</div>
+        <!--
+          ✅ Subtítulo — exemplo: "A trajetória de vida de Machado de Assis"
+        -->
+        <div class="modal-subtitle">A trajetória de vida de Aluísio Azevedo</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('vida')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!--
+        ✅ PREENCHA COM A BIOGRAFIA DO ESCRITOR
+        Use a linha do tempo (timeline) para fatos importantes da vida dele.
+        Copie mais blocos "modal-timeline-item" conforme necessário.
+      -->
+
+      <div class="modal-section">
+        <div class="modal-section-title">Linha do Tempo</div>
+
+        <div class="modal-timeline-item">
+          <div class="modal-timeline-year">1857</div><!-- ✅ Ano de nascimento -->
+          <div class="modal-timeline-text">✅ Nasce em [São Luís, Maranhão]. Aluísio Azevedo nasceu em 1857, em São Luís, no Maranhão, em uma família de classe média que valorizava a educação e a cultura. Ele cresceu em uma sociedade escravocrata e desigual, marcada pelo patriarcalismo e pelas diferenças sociais do Brasil do século XIX. O ambiente urbano e intelectual da cidade, com circulação de jornais e ideias políticas, influenciou sua formação crítica e ajudou a inspirar suas futuras obras literárias.</div>
+        </div>
+
+        <div class="modal-timeline-item">
+          <div class="modal-timeline-year">1857</div><!-- ✅ Ano importante -->
+          <div class="modal-timeline-text">✅ Um evento importante foi a sua mudança para o Rio de Janeiro ainda jovem para estudar pintura na Academia Imperial de Belas Artes. Nesse período, ele também começou a trabalhar com caricaturas e jornalismo, atividades que ampliaram seu contato com a vida urbana, a política e os problemas sociais do Brasil, influenciando diretamente sua futura carreira literária.</div>
+        </div>
+
+        <div class="modal-timeline-item">
+          <div class="modal-timeline-year">1879</div><!-- ✅ -->
+          <div class="modal-timeline-text">✅A primeira obra publicada de Aluísio Azevedo foi Uma Lágrima de Mulher, em 1879, e teve pouca repercussão imediata, passando quase despercebida pelo público e pela crítica da época. Apesar disso, a obra foi importante por marcar sua estreia na literatura e já apresentar traços de seu estilo, como o foco em conflitos emocionais e críticas sociais. Essa publicação abriu caminho para sua consolidação como escritor e para o desenvolvimento posterior do Naturalismo no Brasil.</div>
+        </div>
+
+        <div class="modal-timeline-item">
+          <div class="modal-timeline-year">1881-1890</div><!-- ✅ -->
+          <div class="modal-timeline-text">✅ Aluísio Azevedo alcançou reconhecimento nacional com obras como O Mulato e O Cortiço, que o consolidaram como um dos principais autores do Naturalismo no Brasil. Ele participou do meio jornalístico e literário da época, contribuindo para debates sociais e culturais. Suas obras refletiam críticas ao preconceito racial, à hipocrisia social e às desigualdades do século XIX, aproximando-o das discussões abolicionistas e das ideias naturalistas em circulação no período.</div>
+        </div>
+
+        <div class="modal-timeline-item">
+          <div class="modal-timeline-year">1913</div><!-- ✅ Ano de falecimento -->
+          <div class="modal-timeline-text">✅Aluísio Azevedo faleceu em Buenos Aires, Argentina, em 1913, enquanto trabalhava como diplomata. Seu legado para a literatura brasileira está na consolidação do Naturalismo, com obras que criticam a sociedade do século XIX e abordam temas como racismo, desigualdade e influência do meio sobre o indivíduo, influenciando gerações posteriores de escritores.</div>
+        </div>
+
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Curiosidades</div>
+        <p>✅ Antes de se dedicar totalmente à literatura, Aluísio trabalhou como pintor, caricaturista e jornalista, participando ativamente da vida boêmia e intelectual do Rio de Janeiro, onde conviveu com escritores e artistas da época.</p>
+        <p>✅Uma curiosidade interessante sobre Aluísio Azevedo é que ele começou a carreira como caricaturista e desenhista de jornais, mostrando que desenvolveu seus talentos artísticos aos poucos antes de se tornar um escritor famoso.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: FRASES -->
+<div class="modal-overlay" id="modal-frases" onclick="closeModalOnOverlay(event, this)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-icon">💬</div>
+      <div>
+        <div class="modal-title">Frases Marcantes</div>
+        <div class="modal-subtitle">As melhores citações do escritor</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('frases')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!--
+        ✅ PREENCHA COM AS FRASES/CITAÇÕES DO ESCRITOR
+        Use o bloco "modal-quote" para cada citação.
+        Adicione após cada citação de qual obra ela veio.
+      -->
+
+      <div class="modal-section">
+        <div class="modal-section-title">Citações das Obras</div>
+
+        <div class="modal-quote">
+          ✅ “O homem é produto do meio em que vive.”
+        </div>
+        <p style="font-size:11px; color: var(--text-muted); margin-top: -6px; margin-bottom: 14px;">— O cortiço, 1890</p>
+
+        <div class="modal-quote">
+          ✅ "Eram cinco horas da manhã e o cortiço acordava, abrindo, não os olhos, mas a sua infinidade de portas e janelas alinhadas."
+        </div>
+        <p style="font-size:11px; color: var(--text-muted); margin-top: -6px; margin-bottom: 14px;">— O cortiço, 1890</p>
+
+        <div class="modal-quote">
+          ✅ "A vida é, muitas vezes, apenas um reflexo das nossas circunstâncias e desejos."
+        </div>
+        <p style="font-size:11px; color: var(--text-muted); margin-top: -6px; margin-bottom: 14px;">— O cortiço, 1890</p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: CONTEXTO HISTÓRICO -->
+<div class="modal-overlay" id="modal-contexto" onclick="closeModalOnOverlay(event, this)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-icon">📜</div>
+      <div>
+        <div class="modal-title">Contexto Histórico</div>
+        <div class="modal-subtitle">Brasil e mundo na época do escritor</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('contexto')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!--
+       Aluísio Azevedo viveu entre 1857 e 1913, período marcado por grandes transformações no Brasil e no mundo. No país, presenciou a escravidão, o crescimento do movimento abolicionista, a Proclamação da República e a rápida urbanização do Rio de Janeiro, cenários que inspiraram suas críticas sociais. No mundo, a Revolução Industrial, o Darwinismo social e o Naturalismo europeu influenciaram seu estilo literário, fazendo com que suas obras, como O Mulato e O Cortiço, refletissem a desigualdade, o preconceito e a influência do meio sobre o comportamento humano.
+      -->
+
+      <div class="modal-section">
+        <div class="modal-section-title">O Brasil na época</div>
+        <p> Aluísio Azevedo viveu no final do Período Imperial e início da República, período marcado pela abolição da escravatura (1888), pela Proclamação da República (1889) e por rápidas transformações sociais e urbanização, especialmente no Rio de Janeiro. Essas mudanças, junto com as desigualdades e preconceitos da época, influenciaram suas obras, que criticam a sociedade brasileira do século XIX.</p>
+        <p> As transformações do Brasil no período de Aluísio Azevedo aparecem em suas obras por meio da crítica ao preconceito racial após a abolição, como em O Mulato, e da representação da vida urbana e das desigualdades sociais nos cortiços, como em O Cortiço. Essas mudanças históricas, marcadas pela passagem do Império para a República e pela urbanização, influenciaram seu olhar crítico sobre a sociedade e o comportamento humano.</p>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">O Movimento Literário</div>
+        <p>Aluísio Azevedo foi um autor do Naturalismo, período literário que retrata a realidade de forma objetiva e mostra o ser humano influenciado pelo meio social e pelos instintos. No Brasil, destacou-se com obras como O Mulato e O Cortiço, que criticam a sociedade e suas desigualdades.</p>
+        <p>O Naturalismo, movimento de Aluísio Azevedo, caracteriza-se pela visão científica da realidade, pelo determinismo e pela descrição objetiva da sociedade, abordando problemas como pobreza, preconceito e desigualdade. Essas características aparecem em obras como O Cortiço e O Mulato, nas quais os personagens são influenciados pelo meio em que vivem e a sociedade é retratada de forma crítica e realista.</p>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Outros Autores do Período</div>
+        <p>Contemporâneos de Aluísio Azevedo incluem Machado de Assis e Raul Pompeia. Eles atuavam no mesmo período literário, o Realismo/Naturalismo, e também criticavam a sociedade brasileira do século XIX, embora com estilos diferentes: Machado focava mais na psicologia e ironia, enquanto Aluísio e Pompeia tinham uma abordagem mais objetiva e social.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: LEGADO -->
+<div class="modal-overlay" id="modal-legado" onclick="closeModalOnOverlay(event, this)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-icon">🏆</div>
+      <div>
+        <div class="modal-title">Prêmios e Legado</div>
+        <div class="modal-subtitle">A importância do escritor até hoje</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('legado')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!--
+        Aluísio Azevedo não recebeu grandes prêmios formais em vida, mas conquistou reconhecimento pelo prestígio de suas obras e pela importância dentro do Naturalismo. Seu legado é fundamental para a literatura brasileira, pois consolidou uma escrita crítica e realista que retrata problemas sociais como racismo, pobreza e desigualdade, especialmente em obras como O Cortiço e O Mulato, que continuam sendo estudadas até hoje e influenciam a compreensão da sociedade do século XIX. Além disso, seu reconhecimento se consolidou posteriormente como um dos principais nomes da literatura brasileira, sendo lembrado como o maior representante do Naturalismo no país e tendo suas obras incluídas no cânone literário e no ensino escolar, o que reforça sua importância duradoura na cultura brasileira.
+      -->
+
+      <div class="modal-section">
+        <div class="modal-section-title">Reconhecimentos em Vida</div>
+        <p>Aluísio Azevedo não recebeu grandes prêmios literários em vida, mas teve reconhecimento por sua atuação intelectual e por suas obras. Trabalhou como diplomata em diferentes países e ganhou prestígio no meio literário com livros como O Cortiço e O Mulato. Mais tarde, foi consagrado pela crítica como o principal representante do Naturalismo no Brasil.</p>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Influência na Literatura Brasileira</div>
+        <p>Aluísio Azevedo influenciou escritores do Realismo e Naturalismo ao consolidar uma literatura crítica e voltada para problemas sociais. Sua obra ajudou a fortalecer o retrato da sociedade de forma objetiva, abordando temas como desigualdade, racismo e pobreza, e deixou como legado uma escrita mais realista que influenciou gerações posteriores da literatura brasileira.</p>
+        <p>Aluísio Azevedo popularizou no Brasil temas como racismo, desigualdade social e vida nos cortiços, além de técnicas naturalistas como descrição detalhada da realidade e o determinismo, que mostra o homem influenciado pelo meio e pela hereditariedade</p>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Presente nos Dias de Hoje</div>
+        <p>Aluísio Azevedo tem obras que são amplamente estudadas em escolas e vestibulares no Brasil, especialmente O Cortiço e O Mulato, por sua importância no Naturalismo e pela crítica social que apresentam. Esses livros também foram adaptados para outras linguagens, como cinema e televisão, sendo O Cortiço a obra mais adaptada, com versões para filme e minisséries que buscam retratar a vida nos cortiços e os conflitos sociais do século XIX. Por isso, suas obras continuam relevantes tanto na educação quanto na cultura popular.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--
+  ✅ Para adicionar um NOVO MODAL DE DESTAQUE:
+  1. Copie um bloco modal-overlay acima
+  2. Mude o id="modal-NOMEDESTAQUE"
+  3. Mude os botões onclick para closeModal('NOMEDESTAQUE')
+  4. Preencha o conteúdo
+  5. No HTML do destaque, mude onclick para openHighlight('NOMEDESTAQUE')
+-->
+
+<!-- ══════════════════════════════════════════════════════════
+     MODAL DE STORIES (TELA CHEIA) — NÃO EDITE ESTA ESTRUTURA
+     ══════════════════════════════════════════════════════════ -->
+<div class="story-modal-overlay" id="story-modal" onclick="handleStoryTap(event)">
+  <div class="story-modal-inner">
+
+    <!-- barra de progresso -->
+    <div class="story-progress-bar" id="story-progress-bar"></div>
+
+    <!-- cabeçalho do story -->
+    <div class="story-modal-header">
+      <div class="story-modal-avatar" id="story-modal-avatar">📖</div>
+      <div class="story-modal-name" id="story-modal-name">Nome do escritor</div>
+      <button class="story-modal-close" onclick="closeStoryModal(event)">✕</button>
+    </div>
+
+    <!-- conteúdo da mídia -->
+    <div class="story-media-container" id="story-media-container"></div>
+
+    <!-- legenda -->
+    <div class="story-modal-caption" id="story-modal-caption"></div>
+
+    <!-- áreas de toque (não clicáveis visualmente) -->
+    <div class="story-nav-tap prev" id="story-tap-prev"></div>
+    <div class="story-nav-tap next" id="story-tap-next"></div>
+
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
